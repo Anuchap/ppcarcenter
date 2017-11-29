@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Localhost(MariaDB)
+ Source Server         : MySQL
  Source Server Type    : MySQL
- Source Server Version : 100207
+ Source Server Version : 100211
  Source Host           : localhost:3306
  Source Schema         : ppcarcenter
 
  Target Server Type    : MySQL
- Target Server Version : 100207
+ Target Server Version : 100211
  File Encoding         : 65001
 
- Date: 29/11/2017 15:19:38
+ Date: 29/11/2017 23:06:10
 */
 
 SET NAMES utf8mb4;
@@ -70,7 +70,7 @@ CREATE TABLE `auth_permission`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `auth_permission_content_type_id_codename_01ab375a_uniq`(`content_type_id`, `codename`) USING BTREE,
   CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of auth_permission
@@ -99,6 +99,9 @@ INSERT INTO `auth_permission` VALUES (21, 'Can delete car', 7, 'delete_car');
 INSERT INTO `auth_permission` VALUES (22, 'Can add maintenance', 8, 'add_maintenance');
 INSERT INTO `auth_permission` VALUES (23, 'Can change maintenance', 8, 'change_maintenance');
 INSERT INTO `auth_permission` VALUES (24, 'Can delete maintenance', 8, 'delete_maintenance');
+INSERT INTO `auth_permission` VALUES (25, 'Can add ผู้ติดต่อ', 9, 'add_contact');
+INSERT INTO `auth_permission` VALUES (26, 'Can change ผู้ติดต่อ', 9, 'change_contact');
+INSERT INTO `auth_permission` VALUES (27, 'Can delete ผู้ติดต่อ', 9, 'delete_contact');
 
 -- ----------------------------
 -- Table structure for auth_user
@@ -123,7 +126,7 @@ CREATE TABLE `auth_user`  (
 -- ----------------------------
 -- Records of auth_user
 -- ----------------------------
-INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$36000$Hl7VYOrqHnrL$NdtYRv6beA7u0hs56KcVNOObR+rBViEuZTdsJK87Exo=', '2017-11-29 08:16:26.755707', 1, 'admin', '', '', 'admin@example.com', 1, 1, '2017-11-29 06:36:30.089707');
+INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$36000$Hl7VYOrqHnrL$NdtYRv6beA7u0hs56KcVNOObR+rBViEuZTdsJK87Exo=', '2017-11-29 13:47:27.429335', 1, 'admin', '', '', 'admin@example.com', 1, 1, '2017-11-29 06:36:30.089707');
 INSERT INTO `auth_user` VALUES (2, 'pbkdf2_sha256$36000$vamc8hcKYSeD$mfepeOCg6YvprZ2CVt5aKKPzx0GViKUlFPrExppsDd0=', '2017-11-29 08:16:54.142707', 0, 'pp', '', '', '', 1, 1, '2017-11-29 08:13:49.000000');
 
 -- ----------------------------
@@ -179,7 +182,7 @@ CREATE TABLE `django_admin_log`  (
   INDEX `django_admin_log_user_id_c564eba6_fk_auth_user_id`(`user_id`) USING BTREE,
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of django_admin_log
@@ -196,6 +199,10 @@ INSERT INTO `django_admin_log` VALUES (9, '2017-11-29 08:14:09.613707', '2', 'pp
 INSERT INTO `django_admin_log` VALUES (10, '2017-11-29 08:15:17.994707', '2', 'pp', 2, '[{\"changed\": {\"fields\": [\"is_staff\", \"is_superuser\"]}}]', 4, 1);
 INSERT INTO `django_admin_log` VALUES (11, '2017-11-29 08:16:04.738707', '2', 'pp', 2, '[{\"changed\": {\"fields\": [\"is_staff\", \"is_superuser\"]}}]', 4, 1);
 INSERT INTO `django_admin_log` VALUES (12, '2017-11-29 08:16:49.189707', '2', 'pp', 2, '[{\"changed\": {\"fields\": [\"is_staff\"]}}]', 4, 1);
+INSERT INTO `django_admin_log` VALUES (13, '2017-11-29 14:06:20.585110', '3', '2กภ8336', 1, '[{\"added\": {}}]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (14, '2017-11-29 14:06:30.171549', '3', '2กภ8336', 2, '[]', 7, 1);
+INSERT INTO `django_admin_log` VALUES (15, '2017-11-29 14:09:25.603031', '5', 'Wash', 1, '[{\"added\": {}}]', 8, 1);
+INSERT INTO `django_admin_log` VALUES (16, '2017-11-29 15:40:08.975978', '2', 'อนุชา พัฒนจันทร์', 1, '[{\"added\": {}}]', 9, 1);
 
 -- ----------------------------
 -- Table structure for django_content_type
@@ -207,7 +214,7 @@ CREATE TABLE `django_content_type`  (
   `model` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `django_content_type_app_label_model_76bd3d3b_uniq`(`app_label`, `model`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of django_content_type
@@ -218,6 +225,7 @@ INSERT INTO `django_content_type` VALUES (2, 'auth', 'permission');
 INSERT INTO `django_content_type` VALUES (4, 'auth', 'user');
 INSERT INTO `django_content_type` VALUES (5, 'contenttypes', 'contenttype');
 INSERT INTO `django_content_type` VALUES (7, 'ppcarcenter', 'car');
+INSERT INTO `django_content_type` VALUES (9, 'ppcarcenter', 'contact');
 INSERT INTO `django_content_type` VALUES (8, 'ppcarcenter', 'maintenance');
 INSERT INTO `django_content_type` VALUES (6, 'sessions', 'session');
 
@@ -231,7 +239,7 @@ CREATE TABLE `django_migrations`  (
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `applied` datetime(6) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of django_migrations
@@ -250,6 +258,11 @@ INSERT INTO `django_migrations` VALUES (11, 'auth', '0007_alter_validators_add_e
 INSERT INTO `django_migrations` VALUES (12, 'auth', '0008_alter_user_username_max_length', '2017-11-29 06:35:16.572707');
 INSERT INTO `django_migrations` VALUES (13, 'sessions', '0001_initial', '2017-11-29 06:35:17.001707');
 INSERT INTO `django_migrations` VALUES (14, 'ppcarcenter', '0001_initial', '2017-11-29 06:50:28.671707');
+INSERT INTO `django_migrations` VALUES (15, 'ppcarcenter', '0002_auto_20171129_2058', '2017-11-29 13:58:28.735360');
+INSERT INTO `django_migrations` VALUES (16, 'ppcarcenter', '0003_car_model', '2017-11-29 14:05:39.090882');
+INSERT INTO `django_migrations` VALUES (17, 'ppcarcenter', '0004_auto_20171129_2105', '2017-11-29 14:05:39.144474');
+INSERT INTO `django_migrations` VALUES (18, 'ppcarcenter', '0005_auto_20171129_2224', '2017-11-29 15:24:40.747392');
+INSERT INTO `django_migrations` VALUES (19, 'ppcarcenter', '0002_auto_20171129_2238', '2017-11-29 15:38:16.996734');
 
 -- ----------------------------
 -- Table structure for django_session
@@ -267,6 +280,7 @@ CREATE TABLE `django_session`  (
 -- Records of django_session
 -- ----------------------------
 INSERT INTO `django_session` VALUES ('bfz292k3lbqzvhgxvsyox5rhzktojevl', 'ODVjYzVmNmFkMzdiNjI0YTM5NGI4OWY3ZDM1ZDc4ZmY5Nzc3ZTNkYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2NDEzMDNhZGMwYjhiZjExODIxMDcxYTdjZGMxNDk2MjgxNWUzYWIyIn0=', '2017-12-13 08:15:40.316707');
+INSERT INTO `django_session` VALUES ('bxd8d11gelvxxh3wboqhole1ykbk47m3', 'ODVjYzVmNmFkMzdiNjI0YTM5NGI4OWY3ZDM1ZDc4ZmY5Nzc3ZTNkYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI2NDEzMDNhZGMwYjhiZjExODIxMDcxYTdjZGMxNDk2MjgxNWUzYWIyIn0=', '2017-12-13 13:47:27.434523');
 INSERT INTO `django_session` VALUES ('ovfszze4t7kx1v5rixpfru3bl84c5uu8', 'YTE4OTJkZTIyMmMyYjg0YmRhODhiYjk0ZThhYWNiY2RjMDBhN2FiMzp7Il9hdXRoX3VzZXJfaWQiOiIyIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiMjJhZTBjYWY0M2IxM2NmNTUxNzA5YzE1M2VkNThiNjRjYTI1NTVlIn0=', '2017-12-13 08:16:54.167707');
 
 -- ----------------------------
@@ -276,14 +290,47 @@ DROP TABLE IF EXISTS `ppcarcenter_car`;
 CREATE TABLE `ppcarcenter_car`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `registration_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `color` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `value` int(11) NOT NULL,
+  `year` int(11) DEFAULT NULL,
+  `model` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `chassis_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `engine_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `equipments` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ppcarcenter_car
 -- ----------------------------
-INSERT INTO `ppcarcenter_car` VALUES (1, '2กภ8336');
-INSERT INTO `ppcarcenter_car` VALUES (2, '2กก8111');
+INSERT INTO `ppcarcenter_car` VALUES (3, '2กภ8336', 'เทา', 680000, 2013, 'MAZDA 2', '', '', '');
+
+-- ----------------------------
+-- Table structure for ppcarcenter_contact
+-- ----------------------------
+DROP TABLE IF EXISTS `ppcarcenter_contact`;
+CREATE TABLE `ppcarcenter_contact`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `age` int(11) NOT NULL,
+  `house_no` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `road` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `sub_district` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `district` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `province` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `postal_code` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `telephone_no` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `card_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `card_no` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `card_place` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `card_date` date NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ppcarcenter_contact
+-- ----------------------------
+INSERT INTO `ppcarcenter_contact` VALUES (2, 'อนุชา พัฒนจันทร์', 29, '41 หมู่ 7', '', 'ปากกราน', 'อยุธยา', 'อยุธยา', '13000', '087 565 1868', 'ประชาชน', '1149900128271', 'อยุธยา', '2015-07-08');
 
 -- ----------------------------
 -- Table structure for ppcarcenter_maintenance
@@ -297,13 +344,11 @@ CREATE TABLE `ppcarcenter_maintenance`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `ppcarcenter_maintenance_car_id_bb2644a5_fk_ppcarcenter_car_id`(`car_id`) USING BTREE,
   CONSTRAINT `ppcarcenter_maintenance_car_id_bb2644a5_fk_ppcarcenter_car_id` FOREIGN KEY (`car_id`) REFERENCES `ppcarcenter_car` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ppcarcenter_maintenance
 -- ----------------------------
-INSERT INTO `ppcarcenter_maintenance` VALUES (2, 'Wash', 120, 1);
-INSERT INTO `ppcarcenter_maintenance` VALUES (3, 'Change Color', 30000, 1);
-INSERT INTO `ppcarcenter_maintenance` VALUES (4, 'ซ่อมช่วงล่าง', 1800, 2);
+INSERT INTO `ppcarcenter_maintenance` VALUES (5, 'Wash', 120, 3);
 
 SET FOREIGN_KEY_CHECKS = 1;

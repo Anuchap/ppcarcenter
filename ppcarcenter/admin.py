@@ -1,13 +1,13 @@
 from django.contrib import admin
 
-from .models import Car, Maintenance
+from .models import Car, Maintenance, Contact
 
 # Register your models here.
 admin.site.site_header = 'PP'
 admin.site.site_title = 'PP'
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ['registration_no']
+    list_display = ['registration_no', 'model', 'color', 'year', 'value']
     list_filter = ['registration_no']
 admin.site.register(Car, CarAdmin)
 
@@ -19,3 +19,7 @@ class MaintenanceAdmin(admin.ModelAdmin):
     #get_car.admin_order_field  = 'registration_no'  #Allows column order sorting
     get_car.short_description = 'เลขทะเบียน'  #Renames column head
 admin.site.register(Maintenance, MaintenanceAdmin)
+
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ['fullname', 'age', 'province', 'telephone_no', 'card_no']
+admin.site.register(Contact, ContactAdmin)
