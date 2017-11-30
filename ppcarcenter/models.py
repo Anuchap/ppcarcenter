@@ -10,7 +10,7 @@ class Car(models.Model):
     year = models.IntegerField(blank=True, verbose_name="ปี")
     engine_no = models.CharField(blank=True, max_length=10, verbose_name='หมายเลขเครื่องยนต์')
     chassis_no = models.CharField(blank=True, max_length=10, verbose_name='หมายเลขตัวถัง')
-    equipments = models.CharField(blank=True, max_length=100, verbose_name='อุปกรณืติดรถ')
+    equipments = models.TextField(blank=True, max_length=100, verbose_name='อุปกรณืติดรถ')
 
     class Meta:
         verbose_name_plural = 'รถ'
@@ -24,7 +24,7 @@ class Car(models.Model):
 class Maintenance(models.Model):
     name = models.CharField(max_length=100, verbose_name='รายการซ่อม')
     charges = models.IntegerField(verbose_name='ราคา')
-    car = models.ForeignKey(Car)
+    car = models.ForeignKey(Car, verbose_name='รถ')
 
     class Meta:
         verbose_name_plural = 'รายการซ่อม'
@@ -59,9 +59,35 @@ class Contact(models.Model):
         return self.fullname
 
 
-#class Purchase(models.Model):
- 
+class Purchase(models.Model):
+    seller = models.ForeignKey(Contact, related_name='contact_purcase_seller', verbose_name='ผู้ขาย')
+    buyer = models.ForeignKey(Contact, related_name='contact_purcase_buyer', verbose_name='ผู้ซื้อ')
+    car = models.ForeignKey(Car, verbose_name='รถ')
+    price = models.IntegerField(blank=True, verbose_name='ราคาขาย')
+    deposit = models.IntegerField(blank=True, verbose_name='เงินมัดจำ')
+    note = models.TextField(blank=True, verbose_name='หมายเหตุ')
 
-#class Sales(models.Model):
- #
+    class Meta:
+        verbose_name_plural = 'สัญญาซื้อรถยนต์'
+        verbose_name = 'สัญญาซื้อรถยนต์'
+        ordering = ['id']
+
+    def __str__(self):
+        return self.seller.fullname
+
+class Sales(models.Model):
+    seller = models.ForeignKey(Contact, related_name='contact_sales_seller', verbose_name='ผู้ขาย')
+    buyer = models.ForeignKey(Contact, related_name='contact_sales_buyer', verbose_name='ผู้ซื้อ')
+    car = models.ForeignKey(Car, verbose_name='รถ')
+    price = models.IntegerField(blank=True, verbose_name='ราคาขาย')
+    deposit = models.IntegerField(blank=True, verbose_name='เงินมัดจำ')
+    note = models.TextField(blank=True, verbose_name='หมายเหตุ')
+
+    class Meta:
+        verbose_name_plural = 'สัญญาขายรถยนต์'
+        verbose_name = 'สัญญาขายรถยนต์'
+        ordering = ['id']
+
+    def __str__(self):
+        return self.buyer.fullname
 
