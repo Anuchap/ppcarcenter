@@ -25,7 +25,7 @@ SECRET_KEY = 'ig9v7!f)n+hggzz%ks=z-iz7gaiz8-!ix(swgh&#3+80=z(kee'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'anuchap.pythonanywhere.com']
 
 
 # Application definition
@@ -74,14 +74,25 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'ppcarcenter',
+#         'USER': 'root',
+#         'PASSWORD': 'morning',
+#         'HOST': 'localhost',
+#         'PORT': '3306'
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ppcarcenter',
-        'USER': 'root',
-        'PASSWORD': 'morning',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'NAME': 'anuchap$ppcarcenter',
+        'USER': 'anuchap',
+        'PASSWORD': 'morningM00n',
+        'HOST': 'anuchap.mysql.pythonanywhere-services.com',
+        'PORT': ''
     }
 }
 

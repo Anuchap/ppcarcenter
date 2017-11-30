@@ -28,7 +28,7 @@ admin.site.register(Contact, ContactAdmin)
 
 
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ['seller', 'buyer', 'car', 'price', 'deposit']
+    list_display = ['seller', 'buyer', 'car', 'price', 'deposit', 'created_at']
     def seller(self, obj):
         return obj.seller.fullname
     def buyer(self, obj):
@@ -40,7 +40,7 @@ admin.site.register(Purchase, PurchaseAdmin)
 
 
 class SalesAdmin(admin.ModelAdmin):
-    list_display = ['buyer', 'seller', 'car', 'price', 'deposit']
+    list_display = ['buyer', 'seller', 'car', 'price', 'deposit', 'created_at']
     def seller(self, obj):
         return obj.seller.fullname
     def buyer(self, obj):

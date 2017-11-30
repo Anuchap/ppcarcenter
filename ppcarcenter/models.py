@@ -66,6 +66,7 @@ class Purchase(models.Model):
     price = models.IntegerField(blank=True, verbose_name='ราคาขาย')
     deposit = models.IntegerField(blank=True, verbose_name='เงินมัดจำ')
     note = models.TextField(blank=True, verbose_name='หมายเหตุ')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='สร้างเมื่อ')
 
     class Meta:
         verbose_name_plural = 'สัญญาซื้อรถยนต์'
@@ -82,6 +83,7 @@ class Sales(models.Model):
     price = models.IntegerField(blank=True, verbose_name='ราคาขาย')
     deposit = models.IntegerField(blank=True, verbose_name='เงินมัดจำ')
     note = models.TextField(blank=True, verbose_name='หมายเหตุ')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='สร้างเมื่อ')
 
     class Meta:
         verbose_name_plural = 'สัญญาขายรถยนต์'
